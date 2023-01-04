@@ -53,9 +53,8 @@ input {
     border: none;
 }
 .result-bar.dd{
-    padding: 20px 70px 20px 20px;
+    padding: 50px 20px 20px 20px;
     border-radius: 24px 24px 24px 24px;
-    background-color: red;
 }
 .main-container-search{
     position: relative;

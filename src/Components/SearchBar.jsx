@@ -6,23 +6,28 @@ import { useEffect, useState } from "react";
 const SearchBar = ({ placeholder }) => {
   const [value, setValue] = useState("");
   const [filteredData, setFilteredData] = useState([]);
-  const [toggle, setToggle] = useState(false)
+  const [toggle, setToggle] = useState(false);
+
   useEffect(() => {
-    $("input,.search").toggleClass("sb",toggle)
-    $(".result-bar").toggleClass("dd",toggle)
-    $(".line").toggleClass("linen",toggle)
-    
-  }, [toggle])
+    $("input,.search").toggleClass("sb", toggle);
+    $(".line").toggleClass("linen", false);
+    $(".result-bar").toggleClass("dd", false);
+  }, [toggle]);
+ 
   
   const changeValue = (e) => {
     const word = e.target.value;
     setValue(word);
+    $(".line").toggleClass("linen", toggle);
+    $(".result-bar").toggleClass("dd", toggle);
 
     const newFilter = data.filter((value) => {
       return value.title.toLowerCase().includes(word.toLowerCase());
     });
     if (word === "") {
       setFilteredData([]);
+      $(".line").toggleClass("linen", false);
+      $(".result-bar").toggleClass("dd", false);
     } else {
       setFilteredData(newFilter);
     }
@@ -34,18 +39,24 @@ const SearchBar = ({ placeholder }) => {
   };
 
   const handleFocus = (e) => {
-    setToggle(true)
-  }
+    setToggle(true);
+  };
   const handleBlur = () => {
-    setToggle(false)
-    clearInput()
-  }
+    setToggle(false);
+    clearInput();
+  };
   return (
     <>
-      <div className="main-container-search" >
+      <div className="main-container-search">
         <div className="search">
           <SearchIcon className="icon" fontSize="large" />
-          <input type="text" placeholder={placeholder} onChange={changeValue} onFocus={handleFocus} onBlur={handleBlur}/>
+          <input
+            type="text"
+            placeholder={placeholder}
+            onChange={changeValue}
+            onFocus={handleFocus}
+            onBlur={handleBlur}
+          />
           {filteredData.length != 0 ? (
             <CloseIcon className="icon" fontSize="large" onClick={clearInput} />
           ) : (
