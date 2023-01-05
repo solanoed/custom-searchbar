@@ -1,90 +1,62 @@
 import SearchIcon from "@mui/icons-material/Search";
 import CloseIcon from "@mui/icons-material/Close";
 import "./SearchBar.css";
-import data from "../data.json";
-import { useEffect, useState } from "react";
-const SearchBar = ({ placeholder }) => {
-  const [value, setValue] = useState("");
-  const [filteredData, setFilteredData] = useState([]);
-  const [toggle, setToggle] = useState(false);
-
-  useEffect(() => {
-    $("input,.search").toggleClass("sb", toggle);
-    $(".line").toggleClass("linen", false);
-    $(".result-bar").toggleClass("dd", false);
-  }, [toggle]);
- 
-  
-  const changeValue = (e) => {
-    const word = e.target.value;
-    setValue(word);
-    $(".line").toggleClass("linen", toggle);
-    $(".result-bar").toggleClass("dd", toggle);
-
-    const newFilter = data.filter((value) => {
-      return value.title.toLowerCase().includes(word.toLowerCase());
-    });
-    if (word === "") {
-      setFilteredData([]);
-      $(".line").toggleClass("linen", false);
-      $(".result-bar").toggleClass("dd", false);
-    } else {
-      setFilteredData(newFilter);
-    }
-  };
+import { useEffect, useRef, useState } from "react";
+const SearchBar = ({
+  placeholder,
+  active,
+  onFocus,
+  searchTerm,
+  onTextChange,
+  hover,
+  onHover
+}) => {
+  const inputRef = useRef(null);
 
   const clearInput = () => {
-    setFilteredData([]);
-    setValue("");
+    onTextChange("");
   };
 
-  const handleFocus = (e) => {
-    setToggle(true);
-  };
-  const handleBlur = () => {
-    setToggle(false);
-    clearInput();
-  };
   return (
-    <>
-      <div className="main-container-search">
-        <div className="search">
-          <SearchIcon className="icon" fontSize="large" />
-          <input
-            type="text"
-            placeholder={placeholder}
-            onChange={changeValue}
-            onFocus={handleFocus}
-            onBlur={handleBlur}
-          />
-          {filteredData.length != 0 ? (
-            <CloseIcon className="icon" fontSize="large" onClick={clearInput} />
-          ) : (
-            <></>
-          )}
-        </div>
-        <div className="line"></div>
-
-        <div className="result-bar">
-          {filteredData.length != 0 && (
-            <div className="dataResult">
-              {filteredData.slice(0, 15).map((value, key) => {
-                return (
-                  <a
-                    className="book-link"
-                    href={value.link}
-                    target="_blank"
-                    key={value.title + value.link}
-                  >
-                    <h2 className="book-title">{value.title}</h2>
-                  </a>
-                );
-              })}
-            </div>
-          )}
-        </div>
-      </div>
-    </>
+    <div
+      className={`search-container ${hover && "hover"} ${active && "active"}`}
+      onMouseEnter={onHover}
+      onMouseLeave={() => {
+        if (inputRef.current === document.activeElement) {
+          return;
+        }
+        onHover(false);
+      }}
+    >
+      <SearchIcon className="icon" fontSize="large" />
+      <input
+        className={`search-input ${hover && "hover"}`}
+        type="text"
+        value={searchTerm}
+        placeholder={placeholder}
+        onChange={(e) => {
+          onTextChange(e.target.value);
+          if (e.target.value <= 0) {
+            onFocus(false);
+          } else {
+            onFocus(true);
+          }
+        }}
+        onFocus={() => {
+          if (searchTerm <= 0) {
+            onHover(true);
+          } else {
+            onFocus(true);
+          }
+        }}
+        onBlur={() => {
+          onFocus(false);
+          onHover(false);
+        }}
+        ref={inputRef}
+      />
+      <CloseIcon className="icon" fontSize="large" onClick={clearInput} />
+    </div>
   );
 };
 

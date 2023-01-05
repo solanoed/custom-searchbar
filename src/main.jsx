@@ -1,11 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import SearchBar from "./Components/SearchBar";
+import { App } from "./Components/App";
+
+
 import "./index.css";
-ReactDOM.createRoot(document.getElementById("root")).render(
-  <>
-    <div className="main-container">
-      <SearchBar placeholder={'Ingrese el libro a Buscar'}/>
-    </div>
-  </>
-);
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
