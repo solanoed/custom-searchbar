@@ -23,10 +23,9 @@ export const App = () => {
       })
     : [];
 
-    if (filteredData.length <1 && active==true) {
-      setActive(false);
-    }
-
+  if (filteredData.length < 1 && active == true) {
+    setActive(false);
+  }
 
   return (
     <div className="main-container">

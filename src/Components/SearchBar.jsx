@@ -9,7 +9,7 @@ const SearchBar = ({
   searchTerm,
   onTextChange,
   hover,
-  onHover
+  onHover,
 }) => {
   const inputRef = useRef(null);
 
