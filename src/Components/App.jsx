@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ListBar } from "./ListBar";
 import SearchBar from "./SearchBar";
 import data from "../data.json";
@@ -22,6 +22,11 @@ export const App = () => {
         return value.title.toLowerCase().includes(searchTerm.toLowerCase());
       })
     : [];
+
+    if (filteredData.length <1 && active==true) {
+      setActive(false);
+    }
+
 
   return (
     <div className="main-container">
