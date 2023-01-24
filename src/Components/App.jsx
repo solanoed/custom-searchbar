@@ -36,22 +36,24 @@ export const App = () => {
   return (
     <div className="main-container" ref={ref}>
       <h1 className="logo-text">The Searchbar</h1>
-      <SearchBar
-        placeholder={"Ingrese el contenido a Buscar"}
-        hover={hover}
-        onHover={onHover}
-        onFocus={onInputFocus}
-        active={active}
-        searchTerm={searchTerm}
-        onTextChange={onTextChange}
-      />
-      {active && <span className="span-line"></span>}
-      <ListBar
-        list={filteredData.slice(0, 10)}
-        active={active}
-        onHover={onHover}
-        onFocus={onInputFocus}
-      />
+      <div className="bar">
+        <SearchBar
+          placeholder={"Ingrese el contenido a Buscar"}
+          hover={hover}
+          onHover={onHover}
+          onFocus={onInputFocus}
+          active={active}
+          searchTerm={searchTerm}
+          onTextChange={onTextChange}
+        />
+        {active && <span className="span-line"></span>}
+        <ListBar
+          list={filteredData.slice(0, 10)}
+          active={active}
+          onHover={onHover}
+          onFocus={onInputFocus}
+        />
+      </div>
     </div>
   );
 };

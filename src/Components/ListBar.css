@@ -5,6 +5,8 @@
     -moz-border-radius: 0px 0px 24px 24px;
     -ms-border-radius: 0px 0px 24px 24px;
     -o-border-radius: 0px 0px 24px 24px;
+    position: absolute;
+    z-index: 1;
 }
 
 .list {

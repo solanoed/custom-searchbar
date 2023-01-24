@@ -47,4 +47,10 @@ body {
 .span-line {
   width: 92%;
   outline: 1px solid var(--gris-c);
+  position: absolute;
+  left: 4.5%;
+}
+
+.bar{
+  position: relative;
 }
