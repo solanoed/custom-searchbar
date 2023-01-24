@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import "./ListBar.css";
 
-export const ListBar = ({ list, active }) => {
+export const ListBar = ({ list, active, onFocus, onHover }) => {
   if (!active) {
     return null;
   }
@@ -16,9 +16,16 @@ export const ListBar = ({ list, active }) => {
                 href={value.link}
                 target="_blank"
                 key={value.title + value.link}
-                onClick={() => console.log(value.link)}
               >
-                <h2 className="list-option-title">{value.title}</h2>
+                <h2
+                  className="list-option-title"
+                  onClick={() => {
+                    onHover(false);
+                    onFocus(false);
+                  }}
+                >
+                  {value.title}{" "}
+                </h2>
               </a>
             </li>
           );

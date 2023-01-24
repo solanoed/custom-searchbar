@@ -9,7 +9,7 @@ const SearchBar = ({
   searchTerm,
   onTextChange,
   hover,
-  onHover,
+  onHover
 }) => {
   const inputRef = useRef(null);
 
@@ -50,8 +50,14 @@ const SearchBar = ({
           }
         }}
         onBlur={() => {
-          onFocus(false);
-          onHover(false);
+          // onHover(false);
+          // onFocus(false);
+          // if(clickObject=="H2"){
+          // }else{
+          //   onHover(true);
+          //   onFocus(true);
+
+          // }
         }}
         ref={inputRef}
       />
