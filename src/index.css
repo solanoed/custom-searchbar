@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap");
-
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
 * {
   box-sizing: border-box;
   padding: 0;
@@ -35,6 +35,13 @@ body {
   max-width: 500px;
   margin: 50px auto;
 
+}
+
+.logo-text{
+  color: white;
+  font-family: 'Inter', sans-serif;
+  font-size: 70px;
+  margin-bottom: 20px;
 }
 
 .span-line {

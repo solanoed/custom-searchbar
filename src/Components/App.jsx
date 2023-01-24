@@ -35,6 +35,7 @@ export const App = () => {
 
   return (
     <div className="main-container" ref={ref}>
+      <h1 className="logo-text">The Searchbar</h1>
       <SearchBar
         placeholder={"Ingrese el contenido a Buscar"}
         hover={hover}

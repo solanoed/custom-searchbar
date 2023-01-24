@@ -49,16 +49,7 @@ const SearchBar = ({
             onFocus(true);
           }
         }}
-        onBlur={() => {
-          // onHover(false);
-          // onFocus(false);
-          // if(clickObject=="H2"){
-          // }else{
-          //   onHover(true);
-          //   onFocus(true);
-
-          // }
-        }}
+        
         ref={inputRef}
       />
       <CloseIcon className="icon" fontSize="large" onClick={clearInput} />
